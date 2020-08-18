@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Browser.qml</file>
+        <file>Images/3dot.png</file>
+    </qresource>
+</RCC>
