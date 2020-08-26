@@ -102,9 +102,6 @@ void NewsSwipeDisplay::TouchUpdate(QTouchEvent *touch)
             continue;
         case Qt::TouchPointReleased:
         {
-//            toPrint = "TouchPointReleased " + QString::number(i)+ " " +
-//                    QString::number(touchPoint.id());
-
             if (touchPoint.id() == 0)
             {
                 up1 = mapFromGlobal(touchPoint.pos().toPoint());
@@ -121,8 +118,6 @@ void NewsSwipeDisplay::TouchUpdate(QTouchEvent *touch)
 
         case Qt::TouchPointPressed:
         {
-//            toPrint = "TouchUpdateDown " + QString::number(i) + " " +
-//                    QString::number(touchPoint.id());
 
             if (touchPoint.id() == 0)
             {
@@ -151,8 +146,7 @@ void NewsSwipeDisplay::TouchUpdate(QTouchEvent *touch)
 }
 
 void NewsSwipeDisplay::TouchEnd(QTouchEvent *touch)
-{
-    //toPrint = "TouchEnd ";
+{    
     isTouching = false;
 
     up1 = mapFromGlobal(touch->touchPoints().first().pos().toPoint());
@@ -237,8 +231,7 @@ void NewsSwipeDisplay::HandleTouchEnd()
     current1 = QPoint(0,0);
     current2 = QPoint(0,0);
 
-    leftRect = QRect(0,0,0,0);
-    //leftRect = QRect(0,0,100,40);
+    leftRect = QRect(0,0,0,0);    
     rightRect = QRect(0,0,0,0);
 
     repaint();
@@ -249,15 +242,11 @@ void NewsSwipeDisplay::HandleTouchUpdate()
     QString debugStr = "Hello there " +
             QString::number(down1.x()) + " " + QString::number(down2.x());
 
-    qDebug() << debugStr;
-    //qDebug( "Hello you" );
-    //std::cout << "Hi guy" << std::endl;
-    //std::cerr << "Hi guy 2" << std::endl;
+    qDebug() << debugStr;    
 
     if (down2.x() == 0 && down2.y() == 0)
     {
-        int delta = current1.x() - down1.x();
-        //toPrint = "swipe " + QString::number(delta);
+        int delta = current1.x() - down1.x();        
 
         if (delta > 0) //swipe right (no)
         {
@@ -319,13 +308,7 @@ void NewsSwipeDisplay::HandleTouchUpdate()
 
                 double pct = (double)progress /
                         (double)(startDistance - endDistance);
-
-                //double pct = 1 - (double)currentDistance /
-                //                  ((double)startDistance - 60);
-
-
-
-                //toPrint = "swipe in " + QString::number(pct);
+                
 
                 int rectCover = (int)(pct * width()) / 2;
                 leftRect = QRect(0,0,rectCover,height());
@@ -476,8 +459,7 @@ void NewsSwipeDisplay::HandlePaint()
     if (isTruncated)
         printable += "...";
 
-    painter.drawText(headlineRect, printable);
-    //painter.drawText(headlineRect, myArticle->Headline);
+    painter.drawText(headlineRect, printable);   
 
 
 
@@ -513,15 +495,14 @@ void NewsSwipeDisplay::HandlePaint()
     if (isDrawSig)
         painter.drawText(sigRect, myArticle->Preview);
 
-    font.setPointSize(10);//font.pointSize() + 2);
+    font.setPointSize(10);
     painter.setFont(font);
 
 
     if (CurrentSlot < 3)
     {
         QPen linePen(QColor(225,225,225), 1);
-        painter.setPen(linePen);
-        //painter.drawLine(5,height()-2,width()-5,height()-2);
+        painter.setPen(linePen);        
     }
 
 }
@@ -574,19 +555,14 @@ bool NewsSwipeDisplay::event(QEvent *event)
     }
 
         break;
-    case QEvent::MouseButtonRelease:
-        //toPrint = "released";
+    case QEvent::MouseButtonRelease:        
         repaint();
-
-        //lblHeadline->setText("released");
+        
         break;
-    case QEvent::MouseMove:
-        //QPoint p = mapFromGlobal(QCursor::pos());
-        //toPrint = "MouseMove " + QString::number(p.x());
+    case QEvent::MouseMove:        
 
         repaint();
-        //QString str = new QString()
-       // lblHeadline->setText("moving " + QString::number(p.x()));
+        
         break;
     }
 

@@ -79,8 +79,7 @@ void NewItemsWidget::DataAvailable()
 }
 
 void NewItemsWidget::UpdateAnimation()
-{
-    //QDateTime now = QDateTime::currentDateTime();
+{    
     qint64 elapsed = timeClicked.msecsTo(QDateTime::currentDateTime());
     int pct = (elapsed * 100) / 500;
 
@@ -103,24 +102,6 @@ void NewItemsWidget::UpdateAnimation()
          emit BrowserShown();
 
         NewsSwipeDisplay* nsd = newsItems.at(articleClicked);
-
-           ////////////////
-//            QQmlApplicationEngine* engine = new QQmlApplicationEngine(this);
-          // QQmlContext *context = engine->rootContext();
-         //  context->setContextProperty(QStringLiteral("initialUrl"),
-          //     nsd->myArticle->URL);
-//           //if (!isBrowserShown)
-//               engine->load(QUrl("qrc:/Browser.qml"));
-
-//           topLevel = engine->rootObjects().value(0);
-//           connect(topLevel, SIGNAL(closeButtonClicked()), this,
-//                          SLOT(BrowserCloseRequested()));
-//           window = qobject_cast<QQuickWindow *>(topLevel);
-
-
-        //QObject *webber = topLevel->findChild<QObject*>("webber");
-        //if (webber)
-        //    webber->setProperty("url", nsd->myArticle->URL);
 
         QVariant returnedValue;
         QVariant msg = nsd->myArticle->URL;
@@ -189,8 +170,7 @@ void NewItemsWidget::AddNewArticles(int startIndex,
         " to UI");
 
     for (int i = 0; i < newArticles.size(); i++)
-    {
-        //articlesAdded++;
+    {        
         Article* na = newArticles.at(i);
         NewsSwipeDisplay* nsd = newsItems.at(i);
         nsd->SetArticle(na);

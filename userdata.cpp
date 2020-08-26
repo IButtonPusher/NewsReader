@@ -58,20 +58,15 @@ void UserData::ArticlesDownloaded()
     QByteArray qba = fdWeb->downloadedData();
     QString xml = QString(qba);
 
-    //if (xml.length() == 0)
-    {
+   
         qint64 elapsed = lastInternetError.msecsTo(
                     QDateTime::currentDateTime());
 
         if (elapsed >= 3600000) //1 hour?
         {
-           // QMessageBox msgBox;
-            //msgBox.setText("Unable to contact server");
-           // msgBox.exec();
-
             lastInternetError = QDateTime::currentDateTime();
         }
-    }
+  
 
     QDomDocument qdd;
     qdd.setContent(xml);
@@ -142,8 +137,7 @@ void UserData::ArticlesDownloaded()
 }
 
 Article* UserData::GetNewArticle()
-{
-    //std::vector<Article *> toReturn;
+{    
     Article *toReturn;
 
     if (availableArticles.size() > 0)

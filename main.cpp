@@ -12,16 +12,4 @@ int main(int argc, char *argv[])
     w.show();
 
     return a.exec();
-
-//        QGuiApplication app(argc, argv);
-
-
-
-//        QQmlApplicationEngine engine;
-//        //engine.rootContext()->setContextProperty("oslo2Berlin", &oslo2berlin);
-//        //engine.rootContext()->setContextProperty("berlin2London", &berlin2london);
-//        engine.load(QUrl(QStringLiteral("qrc:/Browser.qml")));
-
-//        return app.exec();
-
 }

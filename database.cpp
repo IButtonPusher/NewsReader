@@ -11,24 +11,17 @@
 Database::Database(QObject *parent) : QObject(parent)
 {
     QString basePath = QStandardPaths::standardLocations(
-                QStandardPaths::HomeLocation)[0];
-
-    //basePath = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+                QStandardPaths::HomeLocation)[0];    
 
     const QStringList __picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
 
-    basePath = __picturesLocations.back();
-
-    //maxArticleIDPulled = 0;
+    basePath = __picturesLocations.back();    
 
     QString path = basePath + "/livelocal.ror";
 
     QFileInfo check_file(path);
-    // check if file exists and if yes: Is it really a file and no directory?
+    // check if file exists and if yes: Is it really a file and not a directory?
     bool isExists = check_file.exists() && check_file.isFile();
-
-//    if (isExists)
-//        check_file.de
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");//not dbConnection
     db.setDatabaseName(path);
@@ -94,9 +87,7 @@ Database::~Database()
 }
 
 std::vector<Article *> Database::GetFreshArticles(int limit)
-{
-    /*AND ID > " +
-                QString::number(maxArticleIDPulled)*/
+{    
 
     std::vector<Article *> toReturn;
     QString str = "SELECT * FROM LateBreaking WHERE IsSwiped=0 ORDER BY Score DESC";
@@ -121,10 +112,7 @@ std::vector<Article *> Database::GetFreshArticles(int limit)
         if (dbReturned.contains(current->ID))
             continue;
 
-        dbReturned.insert(current->ID);
-
-        //if (current->ID > maxArticleIDPulled)
-        //    maxArticleIDPulled = current->ID;
+        dbReturned.insert(current->ID);        
 
         AddLog("loaded " + current->Headline + " from db");
 

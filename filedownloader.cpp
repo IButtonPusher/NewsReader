@@ -17,7 +17,6 @@ FileDownloader::~FileDownloader() { }
 void FileDownloader::fileDownloaded(QNetworkReply* pReply) {
  m_DownloadedData = pReply->readAll();
 
-// QByteArray qba = m_DownloadedData->downloadedData();
  QString xml = QString(m_DownloadedData);
 
  //emit a signal

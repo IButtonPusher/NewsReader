@@ -20,22 +20,12 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
 
-    toolBar =addToolBar("toolbar");
-    //toolBar->setGeometry(QRect(0, 0, 704, 200));
+    toolBar = addToolBar("toolbar");    
 
     setStyleSheet("QToolButton::menu-indicator{ image: url(none.jpg); }");
 
-//    QLabel* label = new QLabel(this);
-//    QPixmap pixmap(":/Images/logo.png");
-//    label->setPixmap(pixmap);
 
-//    label->setMask(pixmap.mask());
-//    label->show();
-//    toolBar->addWidget(label);
-
-    cbBla = new QComboBox(toolBar);
-
-    //cbBla->setStyleSheet("QComboBox { background-color: blue; }");
+    cbBla = new QComboBox(toolBar);    
 
     cbBla->addItem("Main","Main");
     cbBla->addItem("Politics","Politics");
@@ -45,10 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
     cbBla->addItem("Business","Business");
     cbBla->addItem("Technology","Technology");
 
-    QFont fnt;// = new QFont("Tahoma",10,3);
+    QFont fnt;
     fnt.setFamily("Tahoma");
     fnt.setPointSize(20);
-   // fnt.setBold(true);
+   
     cbBla->setFont(fnt);
    cbBla->setItemData( 0, QColor( Qt::blue ), Qt::BackgroundRole );
    cbBla->setItemData( 0,fnt, Qt::FontRole );
@@ -61,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     // toolBar is a pointer to an existing toolbar
     toolBar->addWidget(spacer);
 
-//QToolButton::menu-indicator { image: none; }
+
     mnuCategory = new QMenu("test");
     test1 = new QAction("test1", this);
     mnuCategory->addAction(test1);
@@ -70,11 +60,11 @@ MainWindow::MainWindow(QWidget *parent)
     toolButton = new QToolButton(toolBar);
 
     toolButton->setIcon(QIcon(":/Images/3dot.png"));
-    //toolButton->setText("...");
+
     toolButton->setContextMenuPolicy(Qt::ActionsContextMenu);
     toolButton->setMenu(mnuCategory);
     toolButton->setPopupMode(QToolButton::InstantPopup);
-    //toolButton->setGeometry(QRect(200,0,40,40));
+
     toolBar->addWidget(toolButton);
 
 
@@ -84,8 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     newsSwipers = new NewItemsWidget;
 
     mainLayout = new QVBoxLayout;
-    //mainLayout->addWidget(mnuCategory);
-    //mainLayout->addWidget(cbBla);
+    
     mainLayout->addWidget(toolBar);
     mainLayout->addWidget(newsSwipers);
 
@@ -93,11 +82,6 @@ MainWindow::MainWindow(QWidget *parent)
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
 
-
-
-
-
-    //setCentralWidget(centralWidget);
     connect(newsSwipers, SIGNAL(BrowserShown()), this,
         SLOT(HideMe()));
     connect(newsSwipers, SIGNAL(BrowserHidden()), this,
@@ -119,13 +103,9 @@ void MainWindow::ShowMe()
 
 void MainWindow::Test()
 {
-//    QMessageBox msgBox;
-//    msgBox.setText("The document has been modified.");
-//    msgBox.exec();
 
     QQmlContext *context = engine.rootContext();
-   //    context->setContextProperty(QStringLiteral("initialUrl"),
-   //        nsd->myArticle->URL);
+   
        engine.load(QUrl("qrc:/Browser.qml"));
 
        QObject *topLevel = engine.rootObjects().value(0);
@@ -137,6 +117,6 @@ void MainWindow::Test()
 
 MainWindow::~MainWindow()
 {
-   // QPushButton *btn =
+   
 
 }
